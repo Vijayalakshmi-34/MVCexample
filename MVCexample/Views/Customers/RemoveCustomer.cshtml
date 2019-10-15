@@ -1,0 +1,58 @@
+﻿@model MVCexample.Models.Customer
+@{
+    ViewBag.Title = "RemoveCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="padding : 50px 0px 5px 0px">Remove details of @Model.CustomerName</h2>
+
+@Html.AntiForgeryToken()
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        var BirthDate = Model.BirthDate.HasValue ? Model.BirthDate.Value.ToLongDateString() : "No Date";
+        // HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
+        <div class="form-group">
+            @Html.LabelFor(c => c.CustomerName)
+            @Html.DisplayFor(c => c.CustomerName)
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.BirthDate)
+            @Html.Display("BirthDate", BirthDate)
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.Gender)
+            @Html.DisplayFor(c => c.Gender)
+            @*@Html.DropDownListFor(c => c.Gender, ViewBag.Gender as SelectList, new { @class = "form-control", type = "Date", autocomplete = "off", required = true })*@
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.MobileNumber)
+            @Html.DisplayFor(c => c.MobileNumber)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.City)
+            @Html.DisplayFor(c => c.City)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.MembershipTypeID)
+            @Html.DisplayFor(c => c.MembershipTypeID)
+            @*@Html.DropDownListFor(c => c.MembershipTypeID, ViewBag.MembershipTypeID as SelectList, new { @class = "form-control", type = "Date", autocomplete = "off", required = true })*@
+        </div>
+
+        <div>
+            <input type="submit" name="cmdsubmit" value="Delete" class="btn btn-outline-primary" />
+        </div>
+    }
+</div>
+
+<div class="jumbotron">
+    @Html.ActionLink("Back to list", "index", "Customers")
+</div>

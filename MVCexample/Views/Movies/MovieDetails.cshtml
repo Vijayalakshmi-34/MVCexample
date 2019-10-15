@@ -1,0 +1,29 @@
+﻿@model MVCexample.Models.Movie
+@{
+    ViewBag.Title = "MovieDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if(Model!=null)
+{
+    <div>
+        <h2 style="padding:40px 0px 10px 0px">@Model.MovieName</h2>
+        <ul>
+            @*<li class="list-group-item">Genre : @Model.Genre</li>*@
+            <li class="list-group-item">Release Date : @Model.ReleaseDate.Value.ToLongDateString()</li>
+            <li class="list-group-item">Date Added : @Model.DateAdded.Value.ToLongDateString()</li>
+            <li class="list-group-item">Available Stock : @Model.AvailableStock</li>
+
+            <li class="list-group-item">Genre : @Model.Genre.Name</li>
+
+        </ul>
+        <div>
+            @Html.ActionLink("Back to List", "Index", "Movies", null, null)
+        </div>
+    </div>
+}
+else
+{
+    <text>No Record Found</text>
+}
+

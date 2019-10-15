@@ -1,0 +1,29 @@
+﻿@model List<MVCexample.Models.Movie>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h2 style="padding : 50px 0px 10px 0px">Movie List</h2>
+    <h5 style="padding : 10px 0px 10px 0px">@Html.ActionLink("New Movie", "Create", "Movies", null, null)</h5>
+    <table class="table table-bordered table-hover">
+        <tr class="thead-dark">
+            <th>ID</th>
+            <th>Movie Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.ID</td>
+            @*<td>@item.MovieName</td>*@
+            <td>@Html.ActionLink(item.MovieName, "MovieDetails", "Movies", new { id = item.ID }, null)</td>
+            <td>@Html.ActionLink("Edit", "EditMovie", "Movies", new { id = item.ID }, new { @class = "btn btn-secondary" })</td>
+            <td>@Html.ActionLink("Delete", "RemoveMovie", "Movies", new { id = item.ID }, new { @class = "btn btn-secondary" })</td>
+        </tr>
+        }
+    </table>
+</div>
+

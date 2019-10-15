@@ -1,0 +1,33 @@
+﻿@model MVCexample.Models.Customer
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model != null)
+{
+<div class="justify-content-lg-center">
+    <h2 style="padding:40px 0px 10px 0px">@Model.CustomerName</h2>
+    <ul>
+        <li class="list-group-item">Date of Birth : @Model.BirthDate.Value.ToLongDateString()</li>
+        <li class="list-group-item">Gender : @Model.Gender</li>
+        <li class="list-group-item">Mobile Number : @Model.MobileNumber</li>
+        <li class="list-group-item">City : @Model.City</li>
+        
+    </ul>
+</div>
+    <div class="justify-content-lg-center">
+        <h2 style="padding:20px 0px 10px 0px">Membership Details</h2>
+        <ul>
+            <li class="list-group-item">Duration : @Model.MembershipType.Duration</li>
+            <li class="list-group-item">SignUp Fee : @Model.MembershipType.SignUpFee</li>
+            <li class="list-group-item">Discount : @Model.MembershipType.Discount</li>
+        </ul>
+    </div>
+    <div class="justify-content-lg-center">
+        @Html.ActionLink("Back to List","Index","Customers",null,null)    @*link for back to list in dtails page at bottom*@
+    </div>
+}
+else
+{
+    <text>No Record Found</text>
+}

@@ -1,0 +1,49 @@
+﻿@model MVCexample.Models.Movie
+@{
+    ViewBag.Title = "RemoveMovie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="padding : 50px 0px 5px 0px">Remove  Details of @Model.MovieName</h2>
+
+@Html.AntiForgeryToken()
+<div class="container">
+    @using (Html.BeginForm())
+    {
+    @Html.AntiForgeryToken()
+        var ReleaseDate = Model.ReleaseDate.HasValue ? Model.ReleaseDate.Value.ToLongDateString() : "No Date";
+        var DateAdded = Model.DateAdded.HasValue ? Model.DateAdded.Value.ToLongDateString() : "No Date";
+    <div class="form-group">
+        @Html.LabelFor(c => c.MovieName)
+        @Html.DisplayFor(c => c.MovieName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.ReleaseDate)
+        @Html.Display("ReleaseDate", ReleaseDate)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.DateAdded)
+        @Html.Display("DateAdded", DateAdded)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.AvailableStock)
+        @Html.DisplayFor(c => c.AvailableStock)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.GenreID)
+        @Html.DisplayFor(c => c.GenreID)
+    </div>
+
+    <div>
+        <input type="submit" name="cmdsubmit" value="Delete" class="btn btn-outline-primary" />
+    </div>
+    }
+</div>
+
+<div class="jumbotron">
+    @Html.ActionLink("Back to list", "index", "Movies")
+</div>
